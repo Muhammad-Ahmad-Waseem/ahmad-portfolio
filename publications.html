@@ -1,3 +1,31 @@
+<!--
+=============================================================
+  HOW TO UPDATE PUBLICATIONS
+  Check Google Scholar: https://scholar.google.com/citations?hl=en&user=99wrmMoAAAAJ
+=============================================================
+
+  1. TOTAL CITATIONS & H-INDEX (top stats bar)
+     Search for: <div class="n">48</div><div class="l">Citations</div>
+     Search for: <div class="n">5</div><div class="l">h-index</div>
+     Replace 48 and 5 with current values from your Scholar profile.
+
+  2. PER-PAPER CITATION COUNT
+     Each paper has a block like:
+       <div class="cites">18</div><div class="cites-l">Citations</div>
+     The number before </div> is the count — update it.
+
+  3. ADDING A NEW PAPER
+     Copy an existing <article class="pub" data-year="YYYY"> block,
+     update the year, title, authors, venue, abstract, links, and cite count.
+     Also add the new year as a filter chip in .pub-filter if it's a new year.
+
+  4. PUSH TO DEPLOY
+     git add publications.html
+     git commit -m "Update citation counts"
+     git push
+     Netlify auto-deploys within ~30 seconds.
+=============================================================
+-->
 <!doctype html>
 <html lang="en">
 <head>
@@ -116,13 +144,12 @@
 
         <div class="scholar-stats">
           <div class="s"><div class="n">7</div><div class="l">Publications</div></div>
-          <div class="s"><div class="n" id="s2-total-citations">48</div><div class="l">Citations</div></div>
-          <div class="s"><div class="n" id="s2-hindex">5</div><div class="l">h-index</div></div>
+          <div class="s"><div class="n">48</div><div class="l">Citations</div></div>
+          <div class="s"><div class="n">5</div><div class="l">h-index</div></div>
           <div class="s"><div class="n">2022–26</div><div class="l">Active years</div></div>
         </div>
         <p style="margin-top:14px;font-family:var(--f-mono);font-size:10px;letter-spacing:0.12em;color:var(--ink-3);">
-          Citation counts sourced from <a href="https://www.semanticscholar.org" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Semantic Scholar</a> and update automatically — may differ from
-          <a href="https://scholar.google.com/citations?hl=en&user=99wrmMoAAAAJ" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Google Scholar</a>.
+          Counts from <a href="https://scholar.google.com/citations?hl=en&user=99wrmMoAAAAJ" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Google Scholar</a> — updated manually every few months.
         </p>
       </section>
 
@@ -138,7 +165,7 @@
 
       <div class="pub-list" id="pubList">
 
-        <article class="pub" data-year="2026" data-s2id="">
+        <article class="pub" data-year="2026">
           <div class="year">'26</div>
           <div>
             <h3>reverseDAAM: Region-to-Token Interpretability for Diffusion Models</h3>
@@ -152,7 +179,7 @@
           </div>
         </article>
 
-        <article class="pub" data-year="2025" data-s2id="74e733790a34c760ed5a74af566bae700c8bc403">
+        <article class="pub" data-year="2025">
           <div class="year">'25</div>
           <div>
             <h3>A Tuning-Fork Network for Improved Building Footprint Extraction</h3>
@@ -168,7 +195,7 @@
           </div>
         </article>
 
-        <article class="pub" data-year="2025" data-s2id="4be9c5bb38be7ecebcc7a239883d273a619d3ec6">
+        <article class="pub" data-year="2025">
           <div class="year">'25</div>
           <div>
             <h3>Evaluating Cooling Efficacy of Urban Green Spaces During Extreme Heat Events</h3>
@@ -183,7 +210,7 @@
           </div>
         </article>
 
-        <article class="pub" data-year="2023" data-s2id="7835047280976bde277a81fcbc96a001aa3e095d">
+        <article class="pub" data-year="2023">
           <div class="year">'23</div>
           <div>
             <h3>Unsupervised Landmark Discovery Using Consistency Guided Bottleneck</h3>
@@ -198,7 +225,7 @@
           </div>
         </article>
 
-        <article class="pub" data-year="2023" data-s2id="fe03927abad129a05e05cb101d5936f2e510e792">
+        <article class="pub" data-year="2023">
           <div class="year">'23</div>
           <div>
             <h3>Improved Flood Mapping for Efficient Policy Design</h3>
@@ -213,7 +240,7 @@
           </div>
         </article>
 
-        <article class="pub" data-year="2023" data-s2id="e5ea711b69a2beded4bb3dd20e4af91424d36ec5">
+        <article class="pub" data-year="2023">
           <div class="year">'23</div>
           <div>
             <h3>PD-SEG: Population Disaggregation Using Deep Segmentation Networks</h3>
@@ -271,41 +298,6 @@
     });
   }));
 
-  // Semantic Scholar — fetch live citation counts
-  (async () => {
-    try {
-      const res = await fetch(
-        'https://api.semanticscholar.org/graph/v1/author/2219861421/papers?fields=paperId,citationCount&limit=20'
-      );
-      if (!res.ok) return;
-      const { data } = await res.json();
-      const map = {};
-      data.forEach(p => { map[p.paperId] = p.citationCount; });
-
-      // Update per-paper citation counts
-      document.querySelectorAll('.pub[data-s2id]').forEach(pub => {
-        const id = pub.getAttribute('data-s2id');
-        if (!id) return;
-        const count = map[id];
-        if (count === undefined) return;
-        const el = pub.querySelector('.cites');
-        if (el) el.textContent = count;
-      });
-
-      // Update total citations and h-index in stats bar
-      const counts = data.map(p => p.citationCount || 0).sort((a, b) => b - a);
-      const total = counts.reduce((s, c) => s + c, 0);
-      let h = 0;
-      counts.forEach((c, i) => { if (c >= i + 1) h = i + 1; });
-
-      const totalEl = document.getElementById('s2-total-citations');
-      const hEl = document.getElementById('s2-hindex');
-      if (totalEl) totalEl.textContent = total;
-      if (hEl) hEl.textContent = h;
-    } catch (_) {
-      // silently fall back to hardcoded values
-    }
-  })();
 </script>
 <script src="components/tweaks.js"></script>
 </body>
