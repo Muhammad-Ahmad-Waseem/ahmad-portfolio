@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Publications — Muhammad Ahmad Waseem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/site.css">
+<style>
+  .pub-hero { padding: 60px 0 40px; border-bottom: 1px solid var(--rule); }
+  .pub-hero h1 { font-family: var(--f-display); font-weight: 400; font-size: clamp(3rem, 7vw, 6rem); line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 20px; }
+  .pub-hero h1 em { color: var(--accent); font-style: italic; }
+  .pub-hero .lede { color: var(--ink-2); font-size: 1.1rem; max-width: 68ch; }
+
+  .scholar-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 32px;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+  }
+  .scholar-stats .s {
+    padding: 22px 20px;
+    border-right: 1px solid var(--rule);
+  }
+  .scholar-stats .s:last-child { border-right: 0; }
+  .scholar-stats .n { font-family: var(--f-display); font-size: 2.4rem; line-height: 1; color: var(--ink); letter-spacing: -0.02em; }
+  .scholar-stats .l { font-family: var(--f-mono); font-size: 10px; color: var(--ink-3); letter-spacing: 0.16em; text-transform: uppercase; margin-top: 8px; }
+
+  .pub-filter {
+    display: flex; gap: 24px; align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .pub-filter .chip { cursor: pointer; padding: 4px 2px; border: 0; background: transparent; font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--ink-3); }
+  .pub-filter .chip.on { color: var(--accent); border-bottom: 1px solid var(--accent); }
+
+  .pub-list { margin-top: 12px; }
+  .pub {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 80px 1fr 160px;
+    gap: 32px;
+    align-items: start;
+  }
+  .pub .year {
+    font-family: var(--f-display); font-size: 2.2rem; color: var(--ink);
+    line-height: 1; letter-spacing: -0.02em;
+  }
+  .pub h3 {
+    font-family: var(--f-display); font-weight: 400; font-size: 1.45rem;
+    line-height: 1.25; margin: 0 0 10px; letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .pub .authors { font-size: 14px; color: var(--ink-2); margin-bottom: 8px; }
+  .pub .authors .me { color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+  .pub .venue {
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent);
+  }
+  .pub .toggle {
+    margin-top: 14px;
+    cursor: pointer;
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-2);
+    border: 0; background: transparent; padding: 0;
+  }
+  .pub .toggle:hover { color: var(--accent); }
+  .pub .abstract {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .5s ease, margin .3s ease;
+    color: var(--ink-2); font-size: 14.5px; line-height: 1.65;
+  }
+  .pub.open .abstract { max-height: 400px; margin-top: 14px; }
+
+  .pub .links {
+    display: flex; flex-direction: column; gap: 10px;
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .pub .links a {
+    display: inline-flex; gap: 8px; align-items: center;
+    padding: 7px 10px; border: 1px solid var(--rule-2);
+    color: var(--ink-2);
+    transition: all .2s ease;
+  }
+  .pub .links a:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .pub .cites {
+    font-family: var(--f-display); font-size: 1.4rem; color: var(--ink);
+    line-height: 1;
+  }
+  .pub .cites-l { font-family: var(--f-mono); font-size: 10px; color: var(--ink-3); letter-spacing: 0.16em; text-transform: uppercase; margin-top: 4px; }
+
+  @media (max-width: 820px) {
+    .scholar-stats { grid-template-columns: 1fr 1fr; }
+    .scholar-stats .s:nth-child(2n) { border-right: 0; }
+    .scholar-stats .s:nth-child(n+3) { border-top: 1px solid var(--rule); }
+    .pub { grid-template-columns: 1fr; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <main class="page">
+    <div class="container">
+
+      <section class="pub-hero reveal in">
+        <div class="eyebrow" style="margin-bottom:14px">§ 04 / Publications</div>
+        <h1>Research, <em>indexed.</em></h1>
+        <p class="lede">Seven peer-reviewed papers across IEEE IGARSS, BMVC, IEEE SMC, and SDSC. Topics span ASR, diffusion interpretability, computer vision, and remote sensing. Click any entry to expand the abstract.</p>
+
+        <div class="scholar-stats">
+          <div class="s"><div class="n">7</div><div class="l">Publications</div></div>
+          <div class="s"><div class="n">48</div><div class="l">Citations</div></div>
+          <div class="s"><div class="n">5</div><div class="l">h-index (est.)</div></div>
+          <div class="s"><div class="n">2022–26</div><div class="l">Active years</div></div>
+        </div>
+      </section>
+
+      <div class="pub-filter">
+        <span>Filter by:</span>
+        <button class="chip on" data-f="all">All</button>
+        <button class="chip" data-f="2026">2026</button>
+        <button class="chip" data-f="2025">2025</button>
+        <button class="chip" data-f="2023">2023</button>
+        <button class="chip" data-f="2022">2022</button>
+        <span style="margin-left:auto">Sorted by year · ↓</span>
+      </div>
+
+      <div class="pub-list" id="pubList">
+
+        <article class="pub" data-year="2026">
+          <div class="year">'26</div>
+          <div>
+            <h3>reverseDAAM: Region-to-Token Interpretability for Diffusion Models</h3>
+            <div class="authors"><span class="me">M. A. Waseem</span>, et al.</div>
+            <div class="venue">Under Review · IEEE SMC 2026</div>
+            <button class="toggle">+ Abstract</button>
+            <div class="abstract">We propose reverseDAAM, a post-hoc interpretability framework that maps image regions back to prompt tokens in text-to-image diffusion models. The method aggregates cross-attention scores across timesteps and introduces a Word–BBox Alignment Score to compare models. Validated on Stable Diffusion, SDXL, and DeepFloyd IF-XL, reverseDAAM surfaces systematic alignment failures between what the prompt asks for and where the model paints it.</div>
+          </div>
+          <div class="links">
+            <div style="margin-top:4px"><div class="cites">—</div><div class="cites-l">Under review</div></div>
+          </div>
+        </article>
+
+        <article class="pub" data-year="2025">
+          <div class="year">'25</div>
+          <div>
+            <h3>A Tuning-Fork Network for Improved Building Footprint Extraction</h3>
+            <div class="authors"><span class="me">M. A. Waseem</span>, et al.</div>
+            <div class="venue">IEEE IGARSS 2025</div>
+            <button class="toggle">+ Abstract</button>
+            <div class="abstract">TFNet introduces a multi-task segmentation architecture with a Dilated ResNet encoder and dual decoders that jointly predict footprint masks and edge maps. The dual heads act as a "tuning fork" that co-regularizes shape and boundary, achieving 94% F1 on SpaceNet2 and WHU benchmarks with strong generalization across sensors.</div>
+          </div>
+          <div class="links">
+            <a href="https://2025.ieeeigarss.org/view_paper.php?PaperNum=3689" target="_blank" rel="noopener">Paper →</a>
+            <a href="https://github.com/Muhammad-Ahmad-Waseem/TF-Net" target="_blank" rel="noopener">Code →</a>
+            <div style="margin-top:4px"><div class="cites">9</div><div class="cites-l">Citations</div></div>
+          </div>
+        </article>
+
+        <article class="pub" data-year="2025">
+          <div class="year">'25</div>
+          <div>
+            <h3>Evaluating Cooling Efficacy of Urban Green Spaces During Extreme Heat Events</h3>
+            <div class="authors"><span class="me">M. A. Waseem</span>, et al.</div>
+            <div class="venue">IEEE IGARSS 2025</div>
+            <button class="toggle">+ Abstract</button>
+            <div class="abstract">We quantify how urban parks and green infrastructure mitigate land surface temperature during heatwaves. Combining Landsat LST, Sentinel-2 NDVI, and municipal boundary data, we derive per-park cooling indices and identify high-leverage interventions for climate adaptation planning.</div>
+          </div>
+          <div class="links">
+            <a href="https://www.2025.ieeeigarss.org/view_paper.php?PaperNum=4710" target="_blank" rel="noopener">Paper →</a>
+            <div style="margin-top:4px"><div class="cites">4</div><div class="cites-l">Citations</div></div>
+          </div>
+        </article>
+
+        <article class="pub" data-year="2023">
+          <div class="year">'23</div>
+          <div>
+            <h3>Unsupervised Landmark Discovery Using Consistency Guided Bottleneck</h3>
+            <div class="authors"><span class="me">M. A. Waseem</span>, A. Mahmood, et al.</div>
+            <div class="venue">BMVC 2023</div>
+            <button class="toggle">+ Abstract</button>
+            <div class="abstract">A GCN-based consistency-guided bottleneck that discovers semantically meaningful facial landmarks without supervision. The clustering objective enforces structural consistency across transforms, yielding landmarks competitive with supervised baselines on CelebA and AFLW.</div>
+          </div>
+          <div class="links">
+            <a href="https://arxiv.org/pdf/2309.10518.pdf" target="_blank" rel="noopener">arXiv →</a>
+            <div style="margin-top:4px"><div class="cites">18</div><div class="cites-l">Citations</div></div>
+          </div>
+        </article>
+
+        <article class="pub" data-year="2023">
+          <div class="year">'23</div>
+          <div>
+            <h3>Improved Flood Mapping for Efficient Policy Design</h3>
+            <div class="authors"><span class="me">M. A. Waseem</span>, et al.</div>
+            <div class="venue">IEEE IGARSS 2023</div>
+            <button class="toggle">+ Abstract</button>
+            <div class="abstract">Multi-sensor flood mapping combining Sentinel-1 SAR, Sentinel-2, and Landsat-9 on Google Earth Engine. Applied to the 2022 Pakistan floods, the pipeline identified 1,410 km of damaged road infrastructure with high recall.</div>
+          </div>
+          <div class="links">
+            <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10282530" target="_blank" rel="noopener">IEEE →</a>
+            <div style="margin-top:4px"><div class="cites">11</div><div class="cites-l">Citations</div></div>
+          </div>
+        </article>
+
+        <article class="pub" data-year="2023">
+          <div class="year">'23</div>
+          <div>
+            <h3>PD-SEG: Population Disaggregation Using Deep Segmentation Networks</h3>
+            <div class="authors"><span class="me">M. A. Waseem</span>, et al.</div>
+            <div class="venue">IEEE IGARSS 2023</div>
+            <button class="toggle">+ Abstract</button>
+            <div class="abstract">PD-SEG disaggregates coarse census data into 30-meter population density maps using building-footprint priors and deep segmentation. Outperforms WorldPop and Meta HRSL on held-out districts, with particularly strong gains in informal settlements.</div>
+          </div>
+          <div class="links">
+            <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10281745" target="_blank" rel="noopener">IEEE →</a>
+            <div style="margin-top:4px"><div class="cites">6</div><div class="cites-l">Citations</div></div>
+          </div>
+        </article>
+
+        <article class="pub" data-year="2022">
+          <div class="year">'22</div>
+          <div>
+            <h3>Estimating Spatio-Temporal Urban Development using AI</h3>
+            <div class="authors"><span class="me">M. A. Waseem</span>, et al.</div>
+            <div class="venue">SDSC 2022</div>
+            <button class="toggle">+ Abstract</button>
+            <div class="abstract">Multi-year satellite analysis quantifying urban sprawl trajectories at the city scale. The pipeline fuses segmentation outputs with change-detection to produce longitudinal sprawl indices that correlate with municipal growth indicators.</div>
+          </div>
+          <div class="links">
+            <a href="https://isprs-archives.copernicus.org/articles/XLVIII-4-W5-2022/197/2022/" target="_blank" rel="noopener">ISPRS →</a>
+            <div style="margin-top:4px"><div class="cites">—</div><div class="cites-l">Citations</div></div>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="components/layout.js"></script>
+<script>
+  SiteLayout.mount('papers', 'Publications / 04');
+  document.querySelectorAll('.pub .toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const pub = btn.closest('.pub');
+      pub.classList.toggle('open');
+      btn.textContent = pub.classList.contains('open') ? '− Abstract' : '+ Abstract';
+    });
+  });
+  const chips = document.querySelectorAll('.pub-filter .chip');
+  chips.forEach(c => c.addEventListener('click', () => {
+    chips.forEach(x => x.classList.remove('on'));
+    c.classList.add('on');
+    const f = c.getAttribute('data-f');
+    document.querySelectorAll('.pub').forEach(p => {
+      p.style.display = (f === 'all' || p.getAttribute('data-year') === f) ? '' : 'none';
+    });
+  }));
+</script>
+<script src="components/tweaks.js"></script>
+</body>
+</html>

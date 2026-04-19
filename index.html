@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Muhammad Ahmad Waseem — ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/site.css">
+<style>
+  /* ========== Home hero ========== */
+  .hero {
+    padding: 80px 0 60px;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 80px;
+    align-items: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow .line { flex: 0 0 48px; height: 1px; background: var(--accent); }
+  .hero h1 {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: clamp(3rem, 7.2vw, 6.8rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin: 0 0 28px;
+  }
+  .hero h1 .em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-lede {
+    font-size: clamp(1.05rem, 1.25vw, 1.2rem);
+    color: var(--ink-2);
+    line-height: 1.6;
+    max-width: 56ch;
+    margin-bottom: 40px;
+  }
+  .hero-lede strong { color: var(--ink); font-weight: 600; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .hero-right {
+    position: relative;
+    display: flex; flex-direction: column; gap: 28px;
+  }
+  .hero-photo {
+    aspect-ratio: 4/5;
+    background: var(--paper-3) url('assets/profile.png') center/cover no-repeat;
+    filter: grayscale(0.15) contrast(1.02);
+    border: 1px solid var(--rule-2);
+    position: relative;
+  }
+  .hero-photo::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 60%, oklch(0.18 0.01 60 / 0.15));
+    pointer-events: none;
+  }
+  .photo-caption {
+    position: absolute; bottom: 14px; left: 14px; right: 14px;
+    display: flex; justify-content: space-between;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--paper);
+    z-index: 2;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .hero-stats .stat {
+    padding: 14px 12px;
+    border-right: 1px solid var(--rule);
+  }
+  .hero-stats .stat:last-child { border-right: 0; }
+  .hero-stats .n {
+    font-family: var(--f-display);
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .hero-stats .l {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-top: 6px;
+  }
+
+  /* Ticker */
+  .ticker-bar {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+    background: oklch(0.93 0.012 80);
+    padding: 14px 0;
+    margin: 0 calc(-1 * var(--gutter));
+  }
+  .ticker {
+    display: flex;
+    gap: 64px;
+    white-space: nowrap;
+    font-family: var(--f-display);
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--ink-2);
+    animation: ticker 38s linear infinite;
+  }
+  .ticker span { display: inline-flex; align-items: center; gap: 24px; }
+  .ticker .sep {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex: 0 0 6px;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Featured work */
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 32px;
+    margin-top: 24px;
+  }
+  .work-card {
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+  .work-card .frame {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--paper-3);
+    border: 1px solid var(--rule-2);
+  }
+  .work-card .frame img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(0.35) contrast(1.05);
+    transition: transform .8s cubic-bezier(.2,.8,.2,1), filter .4s ease;
+  }
+  .work-card:hover .frame img { transform: scale(1.04); filter: grayscale(0) contrast(1); }
+  .work-card .meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-top: 14px;
+    gap: 20px;
+  }
+  .work-card .title {
+    font-family: var(--f-display);
+    font-size: 1.55rem;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .work-card .idx {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 0.14em;
+  }
+  .work-card .tags {
+    margin-top: 8px;
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .work-card .tag {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    border: 1px solid var(--rule-2);
+    padding: 3px 8px;
+  }
+  .work-card .arrow {
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all .4s ease;
+    color: var(--accent);
+  }
+  .work-card:hover .arrow { opacity: 1; transform: translateX(0); }
+
+  /* Big feature first */
+  .work-grid .feature { grid-column: 1 / -1; }
+  .work-grid .feature .frame { aspect-ratio: 21/9; }
+  .work-grid .feature .title { font-size: 2.2rem; }
+
+  /* Now preview */
+  .now-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    margin-top: 24px;
+  }
+  .now-item {
+    padding: 20px 0;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 24px;
+    align-items: baseline;
+  }
+  .now-item:last-child { border-bottom: 1px solid var(--rule); }
+  .now-item .when { font-family: var(--f-mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.14em; text-transform: uppercase; }
+  .now-item .what { font-family: var(--f-display); font-size: 1.3rem; line-height: 1.2; }
+  .now-item .what em { color: var(--accent); font-style: italic; }
+  .now-item .state {
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+  }
+  .now-item .state.live { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+
+  .now-side {
+    padding: 24px;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    font-family: var(--f-mono);
+    font-size: 12px;
+    line-height: 1.9;
+    color: var(--ink-2);
+  }
+  .now-side .k { color: var(--ink-3); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .now-side .v { display: block; color: var(--ink); margin-bottom: 14px; }
+
+  /* Testimonials quote */
+  .quotes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 24px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .quote {
+    padding: 36px 28px;
+    border-right: 1px solid var(--rule);
+    display: flex; flex-direction: column; justify-content: space-between; gap: 24px;
+  }
+  .quote:last-child { border-right: 0; }
+  .quote blockquote {
+    margin: 0;
+    font-family: var(--f-display);
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .quote blockquote::before { content: '"'; color: var(--accent); }
+  .quote blockquote::after { content: '"'; color: var(--accent); }
+  .quote .who {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .quote .who img {
+    width: 40px; height: 40px; border-radius: 50%;
+    object-fit: cover; filter: grayscale(0.3);
+  }
+  .quote .who .name { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .quote .who .role { font-family: var(--f-mono); font-size: 10px; color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 40px; }
+    .work-grid { grid-template-columns: 1fr; }
+    .now-grid { grid-template-columns: 1fr; }
+    .quotes { grid-template-columns: 1fr; }
+    .quote { border-right: 0; border-bottom: 1px solid var(--rule); }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <main class="page">
+    <div class="container">
+
+      <!-- Hero -->
+      <section class="hero reveal in">
+        <div>
+          <div class="hero-eyebrow">
+            <div class="line"></div>
+            <div class="mono-label">ML Engineer · Buffalo, NY</div>
+          </div>
+          <h1>
+            Muhammad<br/>
+            Ahmad<br/>
+            <span class="em">Waseem.</span>
+          </h1>
+          <p class="hero-lede">
+            I build <strong>production ML systems</strong> — speech recognition,
+            CUDA kernels, and quantized models that run fast on real hardware.
+            Currently finishing my <strong>M.S. in Computer Science at University at Buffalo</strong>,
+            where I research ASR for children's speech and efficient inference.
+          </p>
+          <p class="hero-lede" style="font-size:1rem">
+            7 peer-reviewed publications. 3+ years shipping models from research
+            to government-scale deployment. <strong>Available July 2026.</strong>
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="assets/resume.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13M6 10l6 6 6-6M4 21h16"/></svg>
+              Download Résumé
+            </a>
+            <a class="btn" href="contact.html">Get in touch →</a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-photo" role="img" aria-label="Portrait">
+            <div class="photo-caption">
+              <span>M.A.W · 2026</span>
+              <span>UB · SUNY</span>
+            </div>
+          </div>
+          <div class="hero-stats">
+            <div class="stat"><div class="n">7</div><div class="l">Publications</div></div>
+            <div class="stat"><div class="n">3.94</div><div class="l">GPA · M.S.</div></div>
+            <div class="stat"><div class="n">5×</div><div class="l">TensorRT speedup</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ticker of specialties -->
+      <div class="ticker-bar" aria-hidden="true">
+        <div class="ticker">
+          <span>Speech AI<span class="sep"></span></span>
+          <span>Wav2Vec 2.0<span class="sep"></span></span>
+          <span>CUDA Kernels<span class="sep"></span></span>
+          <span>Quantization-Aware Training<span class="sep"></span></span>
+          <span>TensorRT<span class="sep"></span></span>
+          <span>Conformer ASR<span class="sep"></span></span>
+          <span>Diffusion Interpretability<span class="sep"></span></span>
+          <span>Edge Deployment<span class="sep"></span></span>
+          <span>Speech AI<span class="sep"></span></span>
+          <span>Wav2Vec 2.0<span class="sep"></span></span>
+          <span>CUDA Kernels<span class="sep"></span></span>
+          <span>Quantization-Aware Training<span class="sep"></span></span>
+          <span>TensorRT<span class="sep"></span></span>
+          <span>Conformer ASR<span class="sep"></span></span>
+          <span>Diffusion Interpretability<span class="sep"></span></span>
+          <span>Edge Deployment<span class="sep"></span></span>
+        </div>
+      </div>
+
+      <!-- Selected work -->
+      <section class="reveal">
+        <div class="sect-head">
+          <div>
+            <div class="idx">§ 01 / SELECTED WORK</div>
+          </div>
+          <div>
+            <h2>Things I've built<br/><em style="font-style:italic;color:var(--accent)">that matter.</em></h2>
+            <p class="lede">A cross-section of six projects spanning speech recognition, GPU systems, computer vision, and production geospatial tooling. Each ships real metrics — not demos.</p>
+          </div>
+        </div>
+
+        <div class="work-grid">
+          <a class="work-card feature" href="projects/autophon.html">
+            <div class="frame"><img src="assets/projects/autophon.jpg" alt=""></div>
+            <div class="meta">
+              <div>
+                <div class="title">AutoPhon — Children's speech, annotated 10× faster.</div>
+                <div class="tags">
+                  <span class="tag">Wav2Vec 2.0</span>
+                  <span class="tag">Whisper</span>
+                  <span class="tag">PER 80%→15%</span>
+                </div>
+              </div>
+              <div class="idx">/01 &nbsp;→</div>
+            </div>
+          </a>
+
+          <a class="work-card" href="projects/rdaam.html">
+            <div class="frame"><img src="assets/projects/rdaam.jpg" alt=""></div>
+            <div class="meta">
+              <div>
+                <div class="title">reverseDAAM — diffusion interpretability.</div>
+                <div class="tags"><span class="tag">SDXL</span><span class="tag">IEEE SMC 2026</span></div>
+              </div>
+              <div class="idx">/02</div>
+            </div>
+          </a>
+
+          <a class="work-card" href="projects/tfnet.html">
+            <div class="frame"><img src="assets/projects/tfnet.png" alt=""></div>
+            <div class="meta">
+              <div>
+                <div class="title">TFNet — SOTA building footprints.</div>
+                <div class="tags"><span class="tag">94% F1</span><span class="tag">IGARSS 2025</span></div>
+              </div>
+              <div class="idx">/03</div>
+            </div>
+          </a>
+
+          <a class="work-card" href="projects/cuda.html">
+            <div class="frame"><img src="assets/projects/cuda.jpg" alt=""></div>
+            <div class="meta">
+              <div>
+                <div class="title">CUDA kernels for attention &amp; FFN.</div>
+                <div class="tags"><span class="tag">A100</span><span class="tag">cuBLAS</span></div>
+              </div>
+              <div class="idx">/04</div>
+            </div>
+          </a>
+
+          <a class="work-card" href="projects/quant.html">
+            <div class="frame"><img src="assets/projects/quant.jpg" alt=""></div>
+            <div class="meta">
+              <div>
+                <div class="title">Hardware-aware quantization.</div>
+                <div class="tags"><span class="tag">AWQ</span><span class="tag">GPTQ</span><span class="tag">Jetson</span></div>
+              </div>
+              <div class="idx">/05</div>
+            </div>
+          </a>
+
+          <a class="work-card" href="projects/lwmc.html">
+            <div class="frame"><img src="assets/projects/lwmc.jpg" alt=""></div>
+            <div class="meta">
+              <div>
+                <div class="title">City-scale waste-route optimization.</div>
+                <div class="tags"><span class="tag">100K L/mo saved</span><span class="tag">PostGIS</span></div>
+              </div>
+              <div class="idx">/06</div>
+            </div>
+          </a>
+        </div>
+
+        <div style="margin-top:28px; display:flex; justify-content:flex-end">
+          <a class="btn" href="projects.html">All projects →</a>
+        </div>
+      </section>
+
+      <!-- Now -->
+      <section class="reveal">
+        <div class="sect-head">
+          <div><div class="idx">§ 02 / NOW</div></div>
+          <div>
+            <h2>What I'm working on.</h2>
+            <p class="lede">Live snapshot of current research threads at UB. Updated weekly.</p>
+          </div>
+        </div>
+
+        <div class="now-grid">
+          <div>
+            <div class="now-item">
+              <div class="when">This week</div>
+              <div class="what">Outlier-aware <em>QAT</em> for Conformer ASR — pushing INT8 below 7.5 WER without custom kernels.</div>
+              <div class="state live">Active</div>
+            </div>
+            <div class="now-item">
+              <div class="when">This month</div>
+              <div class="what">Writing the <em>reverseDAAM</em> camera-ready for IEEE SMC 2026.</div>
+              <div class="state">Review</div>
+            </div>
+            <div class="now-item">
+              <div class="when">This semester</div>
+              <div class="what">Profiling custom attention kernels against <em>cuBLAS</em> and <em>FlashAttention-2</em> on A100.</div>
+              <div class="state live">Active</div>
+            </div>
+            <div class="now-item">
+              <div class="when">On deck</div>
+              <div class="what">Porting AutoPhon inference to <em>Jetson Orin</em> for on-device phoneme feedback.</div>
+              <div class="state">Planning</div>
+            </div>
+          </div>
+          <aside class="now-side">
+            <span class="k">Location</span><span class="v">Buffalo, NY</span>
+            <span class="k">Reading</span><span class="v">SmoothQuant+; Flash-Decoding papers</span>
+            <span class="k">Listening</span><span class="v">Practical Deep Learning · TWIML</span>
+            <span class="k">Status</span><span class="v">Interviewing for Jul 2026</span>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Quotes -->
+      <section class="reveal">
+        <div class="sect-head">
+          <div><div class="idx">§ 03 / REFERENCES</div></div>
+          <div>
+            <h2>What advisors say.</h2>
+            <p class="lede">Three years of close research collaboration, in their words.</p>
+          </div>
+        </div>
+
+        <div class="quotes">
+          <div class="quote">
+            <blockquote>You bring a lot of experience to our team and your presence allows other team members to grow as well.</blockquote>
+            <div class="who">
+              <img src="assets/momin-uppal.jpg" alt="">
+              <div>
+                <div class="name">Dr. Momin Uppal</div>
+                <div class="role">Associate Professor · LUMS</div>
+              </div>
+            </div>
+          </div>
+          <div class="quote">
+            <blockquote>Your exceptional skills in computer vision give us a lot of confidence in picking new projects.</blockquote>
+            <div class="who">
+              <img src="assets/muhammad-tahir.jpg" alt="">
+              <div>
+                <div class="name">Dr. Muhammad Tahir</div>
+                <div class="role">Associate Professor · LUMS</div>
+              </div>
+            </div>
+          </div>
+          <div class="quote">
+            <blockquote>You have been a very hard-working student and your never-give-up attitude is not found in many people.</blockquote>
+            <div class="who">
+              <img src="assets/arif-mahmood.jpg" alt="">
+              <div>
+                <div class="name">Dr. Arif Mahmood</div>
+                <div class="role">Thesis Supervisor · ITU</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script src="components/layout.js"></script>
+<script>SiteLayout.mount('home', 'Home / Index');</script>
+<script src="components/tweaks.js"></script>
+</body>
+</html>

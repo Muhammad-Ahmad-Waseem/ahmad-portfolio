@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CUDA Kernels — Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles/site.css">
+<link rel="stylesheet" href="../styles/project.css">
+</head>
+<body>
+<div class="shell">
+  <main class="page">
+    <div class="container">
+
+      <section class="case-hero reveal in">
+        <a class="case-back" href="../projects.html">← All projects</a>
+        <div class="case-meta">
+          <span>/04</span>
+          <span class="accent">SYSTEMS</span>
+          <span>2025</span>
+          <span>Systems · 2025</span>
+        </div>
+        <h1>CUDA Kernels — <em>transformers, close to the metal.</em></h1>
+        <p class="lede">End-to-end CUDA implementation of <strong>scaled dot-product attention</strong> and <strong>FFN layers</strong> on NVIDIA A100. Profiled compute- vs memory-bound regimes against cuBLAS and PyTorch native ops.</p>
+        <div class="hero-img"><img src="../assets/projects/cuda.jpg" alt=""></div>
+      </section>
+
+      <div class="metrics reveal">
+        <div class="metric"><div class="k">Hardware</div><div class="v">A100</div><div class="s">80GB</div></div><div class="metric"><div class="k">Attention impl.</div><div class="v">3</div><div class="s">Naive / Tiled / Fused</div></div><div class="metric"><div class="k">Speedup vs PT</div><div class="v"><em>1.4</em>×</div><div class="s">Long-context</div></div><div class="metric"><div class="k">Peak FLOPs</div><div class="v">42</div><div class="s">% of A100 theoretical</div></div>
+      </div>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 01<br/>PROBLEM</div>
+        <div>
+          <h2>What it had to solve.</h2>
+          <p>PyTorch's default attention is easy to reach for but leaves performance on the table — especially at long context, where the quadratic memory access dominates latency.</p>
+        </div>
+      </article>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 02<br/>APPROACH</div>
+        <div>
+          <h2>How it works.</h2>
+          <p>Three kernel variants were implemented: a naive baseline, a tiled shared-memory version, and a fused softmax-matmul. Each was profiled with Nsight Compute to characterize the compute-vs-memory split across sequence lengths.</p>
+        </div>
+      </article>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 03<br/>RESULTS</div>
+        <div>
+          <h2>What it delivered.</h2>
+          <p>Fused kernel hit <strong>42% of A100 peak FLOPs</strong> at 4K context, outperforming PyTorch native by 1.4× and landing within 15% of cuBLAS for representative workloads.</p>
+        </div>
+      </article>
+
+      <div class="case-links">
+        <a href="https://github.com/Muhammad-Ahmad-Waseem" target="_blank" rel="noopener">
+          <span class="lbl">Source code</span>
+          <span>GitHub →</span>
+        </a>
+        <a href="../publications.html">
+          <span class="lbl">Related papers</span>
+          <span>Publications →</span>
+        </a>
+        <a href="mailto:ahmadwaseem648@gmail.com?subject=CUDA Kernels">
+          <span class="lbl">Ask me anything</span>
+          <span>Email →</span>
+        </a>
+      </div>
+
+      <div class="nav-prev-next">
+        <a href="tfnet.html">
+          <span class="k">← Prev /03</span>
+          <span class="v"><em>TFNet</em></span>
+        </a>
+        <a href="quant.html">
+          <span class="k">Next /05 →</span>
+          <span class="v"><em>Quantization</em></span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="../components/layout.js"></script>
+<script>
+  SiteLayout.mount('work', 'Project · CUDA Kernels');
+  document.querySelectorAll('.rail-nav a, .rail-logo, .site-footer a[href], .rail-socials a').forEach(a => {
+    const h = a.getAttribute('href') || '';
+    if (h && !h.startsWith('http') && !h.startsWith('mailto') && !h.startsWith('#') && !h.startsWith('../') && !h.startsWith('/')) {
+      a.setAttribute('href', '../' + h);
+    }
+  });
+</script>
+<script src="../components/tweaks.js"></script>
+</body>
+</html>

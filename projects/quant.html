@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quantization Benchmarks — Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles/site.css">
+<link rel="stylesheet" href="../styles/project.css">
+</head>
+<body>
+<div class="shell">
+  <main class="page">
+    <div class="container">
+
+      <section class="case-hero reveal in">
+        <a class="case-back" href="../projects.html">← All projects</a>
+        <div class="case-meta">
+          <span>/05</span>
+          <span class="accent">SYSTEMS</span>
+          <span>2025</span>
+          <span>Benchmarks · 2025</span>
+        </div>
+        <h1>Quantization Benchmarks — <em>picking the right knife for the device.</em></h1>
+        <p class="lede">Cross-hardware benchmarking of <strong>AWQ</strong>, <strong>GPTQ</strong>, and <strong>SmoothQuant</strong> across NVIDIA A100, Jetson Orin, and Raspberry Pi. Derived device-specific deployment strategies for edge and cloud.</p>
+        <div class="hero-img"><img src="../assets/projects/quant.jpg" alt=""></div>
+      </section>
+
+      <div class="metrics reveal">
+        <div class="metric"><div class="k">Methods tested</div><div class="v">3</div><div class="s">AWQ · GPTQ · SQ</div></div><div class="metric"><div class="k">Devices</div><div class="v">3</div><div class="s">A100 · Orin · Pi</div></div><div class="metric"><div class="k">Models</div><div class="v">6</div><div class="s">From 125M to 13B</div></div><div class="metric"><div class="k">Accuracy drop</div><div class="v"><1</div><div class="s">% on AWQ INT4</div></div>
+      </div>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 01<br/>PROBLEM</div>
+        <div>
+          <h2>What it had to solve.</h2>
+          <p>Quantization papers report accuracy on single devices. In practice, the "best" method changes with the hardware — memory bandwidth, tensor cores, and INT support all shift the tradeoff.</p>
+        </div>
+      </article>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 02<br/>APPROACH</div>
+        <div>
+          <h2>How it works.</h2>
+          <p>A unified harness runs each method on each device across six models, logging latency, memory, and downstream accuracy. Results are mapped onto a decision matrix that picks the right method for a target device + model size.</p>
+        </div>
+      </article>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 03<br/>RESULTS</div>
+        <div>
+          <h2>What it delivered.</h2>
+          <p><strong>AWQ</strong> dominated on Orin for 7B-class models; <strong>SmoothQuant</strong> won on A100 for throughput; <strong>GPTQ</strong> remained competitive on CPU. All three held within 1% of FP16 accuracy on downstream tasks.</p>
+        </div>
+      </article>
+
+      <div class="case-links">
+        <a href="https://github.com/Muhammad-Ahmad-Waseem" target="_blank" rel="noopener">
+          <span class="lbl">Source code</span>
+          <span>GitHub →</span>
+        </a>
+        <a href="../publications.html">
+          <span class="lbl">Related papers</span>
+          <span>Publications →</span>
+        </a>
+        <a href="mailto:ahmadwaseem648@gmail.com?subject=Quantization Benchmarks">
+          <span class="lbl">Ask me anything</span>
+          <span>Email →</span>
+        </a>
+      </div>
+
+      <div class="nav-prev-next">
+        <a href="cuda.html">
+          <span class="k">← Prev /04</span>
+          <span class="v"><em>CUDA Kernels</em></span>
+        </a>
+        <a href="lwmc.html">
+          <span class="k">Next /06 →</span>
+          <span class="v"><em>Waste Routing</em></span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="../components/layout.js"></script>
+<script>
+  SiteLayout.mount('work', 'Project · Quantization Benchmarks');
+  document.querySelectorAll('.rail-nav a, .rail-logo, .site-footer a[href], .rail-socials a').forEach(a => {
+    const h = a.getAttribute('href') || '';
+    if (h && !h.startsWith('http') && !h.startsWith('mailto') && !h.startsWith('#') && !h.startsWith('../') && !h.startsWith('/')) {
+      a.setAttribute('href', '../' + h);
+    }
+  });
+</script>
+<script src="../components/tweaks.js"></script>
+</body>
+</html>

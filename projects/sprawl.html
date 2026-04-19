@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Urban Sprawl — Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles/site.css">
+<link rel="stylesheet" href="../styles/project.css">
+</head>
+<body>
+<div class="shell">
+  <main class="page">
+    <div class="container">
+
+      <section class="case-hero reveal in">
+        <a class="case-back" href="../projects.html">← All projects</a>
+        <div class="case-meta">
+          <span>/09</span>
+          <span class="accent">PUBLISHED</span>
+          <span>2022</span>
+          <span>SDSC 2022</span>
+        </div>
+        <h1>Urban Sprawl — <em>satellites watching cities grow.</em></h1>
+        <p class="lede">Multi-year satellite analysis quantifying <strong>urban sprawl trajectories</strong> at the city scale. Segmentation fused with change detection to produce longitudinal sprawl indices.</p>
+        <div class="hero-img"><img src="../assets/projects/sprawl.jpg" alt=""></div>
+      </section>
+
+      <div class="metrics reveal">
+        <div class="metric"><div class="k">Years analyzed</div><div class="v">15</div><div class="s">2005–2020</div></div><div class="metric"><div class="k">Cities</div><div class="v">3</div><div class="s">Pakistan</div></div><div class="metric"><div class="k">Pipeline stages</div><div class="v">4</div><div class="s">Seg · Change · Index · Viz</div></div><div class="metric"><div class="k">Correlation</div><div class="v">r=0.89</div><div class="s">vs census growth</div></div>
+      </div>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 01<br/>PROBLEM</div>
+        <div>
+          <h2>What it had to solve.</h2>
+          <p>Urban growth indicators from census data lag by 5–10 years in developing cities. Planners need something more responsive — and globally consistent.</p>
+        </div>
+      </article>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 02<br/>APPROACH</div>
+        <div>
+          <h2>How it works.</h2>
+          <p>Landsat imagery from 2005–2020 is segmented frame-by-frame; change detection between adjacent years produces "growth pixels"; a sprawl index aggregates to the municipal level.</p>
+        </div>
+      </article>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 03<br/>RESULTS</div>
+        <div>
+          <h2>What it delivered.</h2>
+          <p>Derived sprawl indices correlated with census growth (<strong>r = 0.89</strong>) while providing annual resolution — five years ahead of the next census.</p>
+        </div>
+      </article>
+
+      <div class="case-links">
+        <a href="https://github.com/Muhammad-Ahmad-Waseem" target="_blank" rel="noopener">
+          <span class="lbl">Source code</span>
+          <span>GitHub →</span>
+        </a>
+        <a href="../publications.html">
+          <span class="lbl">Related papers</span>
+          <span>Publications →</span>
+        </a>
+        <a href="mailto:ahmadwaseem648@gmail.com?subject=Urban Sprawl">
+          <span class="lbl">Ask me anything</span>
+          <span>Email →</span>
+        </a>
+      </div>
+
+      <div class="nav-prev-next">
+        <a href="popdensity.html">
+          <span class="k">← Prev /08</span>
+          <span class="v"><em>PD-SEG</em></span>
+        </a>
+        <a href="autophon.html">
+          <span class="k">Next /01 →</span>
+          <span class="v"><em>AutoPhon</em></span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="../components/layout.js"></script>
+<script>
+  SiteLayout.mount('work', 'Project · Urban Sprawl');
+  document.querySelectorAll('.rail-nav a, .rail-logo, .site-footer a[href], .rail-socials a').forEach(a => {
+    const h = a.getAttribute('href') || '';
+    if (h && !h.startsWith('http') && !h.startsWith('mailto') && !h.startsWith('#') && !h.startsWith('../') && !h.startsWith('/')) {
+      a.setAttribute('href', '../' + h);
+    }
+  });
+</script>
+<script src="../components/tweaks.js"></script>
+</body>
+</html>

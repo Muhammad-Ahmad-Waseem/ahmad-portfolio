@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AutoPhon — Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles/site.css">
+<style>
+  .case-hero {
+    padding: 40px 0 60px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .case-back { display: inline-flex; gap: 8px; align-items: center; font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 28px; }
+  .case-back:hover { color: var(--accent); }
+  .case-meta { display: flex; gap: 28px; flex-wrap: wrap; margin-bottom: 24px; font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
+  .case-meta .accent { color: var(--accent); }
+  .case-hero h1 {
+    font-family: var(--f-display); font-weight: 400;
+    font-size: clamp(3rem, 7.5vw, 6.4rem);
+    line-height: 0.95; letter-spacing: -0.03em;
+    max-width: 18ch;
+    margin: 0 0 20px;
+  }
+  .case-hero h1 em { color: var(--accent); font-style: italic; }
+  .case-hero .lede { font-size: 1.2rem; color: var(--ink-2); max-width: 62ch; line-height: 1.6; }
+  .case-hero .lede strong { color: var(--ink); }
+
+  .hero-img {
+    margin: 40px 0 0;
+    aspect-ratio: 16/8;
+    overflow: hidden;
+    background: var(--paper-3);
+    border: 1px solid var(--rule-2);
+  }
+  .hero-img img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.05); }
+
+  .metrics {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    margin: 0; padding: 0;
+    border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule);
+    margin-top: 48px;
+  }
+  .metric { padding: 28px 22px; border-right: 1px solid var(--rule); }
+  .metric:last-child { border-right: 0; }
+  .metric .k { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px; }
+  .metric .v { font-family: var(--f-display); font-size: 2.6rem; line-height: 1; color: var(--ink); letter-spacing: -0.02em; }
+  .metric .v em { color: var(--accent); font-style: italic; }
+  .metric .s { font-family: var(--f-mono); font-size: 11px; color: var(--ink-3); margin-top: 6px; }
+
+  .body-grid {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: 48px;
+    padding: 60px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .body-grid .side { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+  .body-grid h2 { font-family: var(--f-display); font-weight: 400; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 22px; max-width: 22ch; }
+  .body-grid h2 em { color: var(--accent); font-style: italic; }
+  .body-grid p { color: var(--ink-2); font-size: 16px; line-height: 1.7; max-width: 64ch; margin-bottom: 18px; }
+  .body-grid p strong { color: var(--ink); }
+  .body-grid .pull {
+    margin: 30px 0;
+    padding: 28px 32px;
+    border-left: 3px solid var(--accent);
+    background: var(--paper-2);
+    font-family: var(--f-display); font-style: italic;
+    font-size: 1.5rem; line-height: 1.3;
+    color: var(--ink);
+  }
+
+  .pipeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .pipeline .step {
+    padding: 18px 16px;
+    border: 1px solid var(--rule-2);
+    position: relative;
+    background: var(--paper);
+  }
+  .pipeline .step::after {
+    content: '→';
+    position: absolute; right: -12px; top: 50%; transform: translateY(-50%);
+    color: var(--accent); font-family: var(--f-display); font-size: 20px;
+    z-index: 2;
+  }
+  .pipeline .step:last-child::after { display: none; }
+  .pipeline .step .n { font-family: var(--f-mono); font-size: 10px; color: var(--accent); letter-spacing: 0.16em; }
+  .pipeline .step .t { font-family: var(--f-display); font-size: 1.1rem; margin-top: 6px; line-height: 1.2; }
+  .pipeline .step .d { font-family: var(--f-mono); font-size: 10px; color: var(--ink-3); margin-top: 6px; }
+
+  .chart {
+    margin: 24px 0;
+    padding: 28px;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+  }
+  .chart h5 { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 20px; }
+  .bar-row { display: grid; grid-template-columns: 150px 1fr 80px; align-items: center; gap: 16px; margin-bottom: 12px; }
+  .bar-row .lab { font-family: var(--f-mono); font-size: 12px; color: var(--ink); }
+  .bar-row .track { height: 22px; background: var(--paper); border: 1px solid var(--rule); position: relative; overflow: hidden; }
+  .bar-row .fill { position: absolute; inset: 0 auto 0 0; background: var(--ink); }
+  .bar-row .fill.accent { background: var(--accent); }
+  .bar-row .val { font-family: var(--f-mono); font-size: 12px; color: var(--ink); text-align: right; }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 30px 0;
+  }
+  .gallery .g {
+    aspect-ratio: 4/3;
+    background: var(--paper-3);
+    border: 1px solid var(--rule-2);
+    overflow: hidden;
+  }
+  .gallery .g img { width: 100%; height: 100%; object-fit: cover; }
+
+  .case-links {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0; margin-top: 40px;
+    border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule);
+  }
+  .case-links a {
+    padding: 28px 22px;
+    border-right: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-2);
+    transition: background .25s ease;
+  }
+  .case-links a:last-child { border-right: 0; }
+  .case-links a:hover { background: var(--ink); color: var(--paper); }
+  .case-links a .lbl { font-family: var(--f-display); font-size: 1.4rem; letter-spacing: -0.01em; color: inherit; font-style: italic; text-transform: none; }
+  .case-links a:hover .lbl { color: var(--paper); }
+
+  .nav-prev-next {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; margin-top: 60px;
+    border-top: 1px solid var(--rule);
+  }
+  .nav-prev-next a {
+    padding: 30px 22px;
+    border-right: 1px solid var(--rule);
+    display: flex; flex-direction: column; gap: 6px;
+    transition: background .25s ease;
+  }
+  .nav-prev-next a:last-child { border-right: 0; text-align: right; align-items: flex-end; }
+  .nav-prev-next a:hover { background: var(--paper-2); }
+  .nav-prev-next .k { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
+  .nav-prev-next .v { font-family: var(--f-display); font-size: 1.5rem; color: var(--ink); letter-spacing: -0.01em; }
+  .nav-prev-next .v em { color: var(--accent); font-style: italic; }
+
+  @media (max-width: 820px) {
+    .metrics { grid-template-columns: 1fr 1fr; }
+    .metric:nth-child(2n) { border-right: 0; }
+    .metric:nth-child(n+3) { border-top: 1px solid var(--rule); }
+    .body-grid { grid-template-columns: 1fr; gap: 16px; }
+    .pipeline, .case-links, .gallery, .nav-prev-next { grid-template-columns: 1fr; }
+    .pipeline .step::after { display: none; }
+    .case-links a, .nav-prev-next a { border-right: 0; border-bottom: 1px solid var(--rule); }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <main class="page">
+    <div class="container">
+
+      <section class="case-hero reveal in">
+        <a class="case-back" href="../projects.html">← All projects</a>
+        <div class="case-meta">
+          <span>/01 · Thesis</span>
+          <span class="accent">ACTIVE</span>
+          <span>2025–2026</span>
+          <span>University at Buffalo</span>
+        </div>
+        <h1>AutoPhon — children's speech, <em>annotated 10× faster.</em></h1>
+        <p class="lede">
+          A phoneme-level annotation pipeline for pediatric speech therapy data.
+          Powered by <strong>Wav2Vec 2.0</strong> fine-tuned on CSLU Kids, MyST, and PhonBank,
+          with a Whisper-based <strong>forced-alignment fallback</strong> for low-confidence segments.
+          <strong>Phoneme Error Rate dropped from 80% to 15%.</strong>
+        </p>
+        <div class="hero-img"><img src="../assets/projects/autophon.jpg" alt="AutoPhon screenshot"></div>
+      </section>
+
+      <div class="metrics reveal">
+        <div class="metric"><div class="k">Phoneme Error Rate</div><div class="v">80→<em>15</em><span style="font-size:1.2rem">%</span></div><div class="s">On held-out CSLU Kids</div></div>
+        <div class="metric"><div class="k">Annotation speedup</div><div class="v"><em>10×</em></div><div class="s">vs. manual baseline</div></div>
+        <div class="metric"><div class="k">Training data</div><div class="v">340<em>h</em></div><div class="s">Across 3 corpora</div></div>
+        <div class="metric"><div class="k">Inference</div><div class="v">0.28<em>×</em></div><div class="s">Realtime factor · A100</div></div>
+      </div>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 01<br/>PROBLEM</div>
+        <div>
+          <h2>Children's speech is <em>different</em> — and most ASR pretends otherwise.</h2>
+          <p>Speech-therapy researchers need phoneme-level transcripts, but pediatric corpora are small, noisy, and expensive to label. Out-of-the-box ASR trained on adult speech fails hard: disfluencies, vocal-tract length differences, and atypical articulation push Phoneme Error Rate (PER) to <strong>80% on CSLU Kids</strong> — essentially unusable for downstream clinical work.</p>
+          <p>The manual alternative — expert phonetic annotators — takes <strong>~45 minutes per minute of audio</strong>. At the scale a single clinic generates, that's not a pipeline; that's a bottleneck.</p>
+
+          <div class="pull">The goal wasn't higher accuracy on adult benchmarks. It was making the long tail of real speech cheap to annotate.</div>
+        </div>
+      </article>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 02<br/>APPROACH</div>
+        <div>
+          <h2>A <em>two-model</em> pipeline with confidence-weighted fallback.</h2>
+          <p>AutoPhon combines a fine-tuned Wav2Vec 2.0 phoneme head (fast, coarse) with a Whisper forced-alignment pass (slow, accurate) gated by a per-segment confidence score. High-confidence segments exit after Wav2Vec; low-confidence ones get the expensive second pass.</p>
+
+          <div class="pipeline">
+            <div class="step"><div class="n">STEP 01</div><div class="t">Wav2Vec 2.0</div><div class="d">Phoneme CTC head · fine-tuned</div></div>
+            <div class="step"><div class="n">STEP 02</div><div class="t">Confidence gate</div><div class="d">Softmax margin · per-segment</div></div>
+            <div class="step"><div class="n">STEP 03</div><div class="t">Whisper align</div><div class="d">Low-confidence only</div></div>
+            <div class="step"><div class="n">STEP 04</div><div class="t">Merge + clean</div><div class="d">Human-readable TextGrid</div></div>
+          </div>
+
+          <p>Fine-tuning was staged: first on MyST (largest, clean) for 20 epochs, then joint on CSLU Kids + PhonBank with a per-corpus loss scaling to prevent the smallest corpus from dominating. LR warmup + cosine decay, AdamW, gradient checkpointing on a single A100.</p>
+        </div>
+      </article>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 03<br/>RESULTS</div>
+        <div>
+          <h2>Below <em>15% PER</em> on held-out data.</h2>
+          <div class="chart">
+            <h5>Phoneme Error Rate · CSLU Kids held-out</h5>
+            <div class="bar-row"><div class="lab">Whisper · zero-shot</div><div class="track"><div class="fill" style="width:90%"></div></div><div class="val">80.3%</div></div>
+            <div class="bar-row"><div class="lab">Wav2Vec · pretrained</div><div class="track"><div class="fill" style="width:75%"></div></div><div class="val">66.1%</div></div>
+            <div class="bar-row"><div class="lab">Wav2Vec · ft. adult</div><div class="track"><div class="fill" style="width:58%"></div></div><div class="val">52.4%</div></div>
+            <div class="bar-row"><div class="lab">Wav2Vec · ft. kids</div><div class="track"><div class="fill" style="width:27%"></div></div><div class="val">24.2%</div></div>
+            <div class="bar-row"><div class="lab"><strong>AutoPhon (full)</strong></div><div class="track"><div class="fill accent" style="width:17%"></div></div><div class="val">14.8%</div></div>
+          </div>
+
+          <p>More importantly, <strong>90% of segments exit after the Wav2Vec pass</strong> — the Whisper fallback is reserved for the hard 10%, keeping end-to-end cost low enough to run on a single A100 overnight for a week of clinic audio.</p>
+
+          <div class="gallery">
+            <div class="g"><img src="../assets/projects/autophon.jpg" alt=""></div>
+            <div class="g"><img src="../assets/projects/rdaam.jpg" alt=""></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 04<br/>NEXT</div>
+        <div>
+          <h2>Porting to the <em>edge.</em></h2>
+          <p>Next thread: running the Wav2Vec stage on Jetson Orin Nano for real-time on-device phoneme feedback in speech therapy apps. Targeting <strong>sub-100ms latency</strong> with outlier-aware INT8 quantization — see the parallel <a class="link" href="quant.html">quantization benchmarks project</a>.</p>
+        </div>
+      </article>
+
+      <div class="case-links">
+        <a href="https://github.com/Muhammad-Ahmad-Waseem/AutoPhon" target="_blank" rel="noopener">
+          <span class="lbl">Source code</span>
+          <span>GitHub →</span>
+        </a>
+        <a href="../publications.html">
+          <span class="lbl">Related papers</span>
+          <span>Publications →</span>
+        </a>
+        <a href="mailto:ahmadwaseem648@gmail.com?subject=AutoPhon">
+          <span class="lbl">Ask me anything</span>
+          <span>Email →</span>
+        </a>
+      </div>
+
+      <div class="nav-prev-next">
+        <a href="../projects.html">
+          <span class="k">← Index</span>
+          <span class="v">All <em>projects</em></span>
+        </a>
+        <a href="rdaam.html">
+          <span class="k">Next /02 →</span>
+          <span class="v"><em>reverseDAAM</em></span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="../components/layout.js"></script>
+<script>
+  // Fix nav rail links to go up one dir
+  SiteLayout.mount('work', 'Project · AutoPhon');
+  document.querySelectorAll('.rail-nav a, .rail-logo, .site-footer a[href], .rail-socials a').forEach(a => {
+    const h = a.getAttribute('href') || '';
+    if (h && !h.startsWith('http') && !h.startsWith('mailto') && !h.startsWith('#') && !h.startsWith('../') && !h.startsWith('/')) {
+      a.setAttribute('href', '../' + h);
+    }
+  });
+</script>
+<script src="../components/tweaks.js"></script>
+</body>
+</html>

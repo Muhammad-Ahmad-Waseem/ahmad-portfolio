@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>reverseDAAM — Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles/site.css">
+<link rel="stylesheet" href="../styles/project.css">
+</head>
+<body>
+<div class="shell">
+  <main class="page">
+    <div class="container">
+
+      <section class="case-hero reveal in">
+        <a class="case-back" href="../projects.html">← All projects</a>
+        <div class="case-meta">
+          <span>/02</span>
+          <span class="accent">ACTIVE</span>
+          <span>2026</span>
+          <span>Under Review · IEEE SMC 2026</span>
+        </div>
+        <h1>reverseDAAM — <em>diffusion interpretability, token-by-token.</em></h1>
+        <p class="lede">A <strong>post-hoc interpretability framework</strong> that maps image regions back to prompt tokens in text-to-image diffusion models. Introduces the <strong>Word–BBox Alignment Score</strong> for comparing how faithfully different models paint what they are told.</p>
+        <div class="hero-img"><img src="../assets/projects/rdaam.jpg" alt=""></div>
+      </section>
+
+      <div class="metrics reveal">
+        <div class="metric"><div class="k">Models validated</div><div class="v">3</div><div class="s">SD, SDXL, IF-XL</div></div><div class="metric"><div class="k">Attention layers</div><div class="v">16</div><div class="s">Cross-attn aggregated</div></div><div class="metric"><div class="k">Alignment gain</div><div class="v">+22</div><div class="s">% vs baseline</div></div><div class="metric"><div class="k">Status</div><div class="v">Review</div><div class="s">IEEE SMC 2026</div></div>
+      </div>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 01<br/>PROBLEM</div>
+        <div>
+          <h2>What it had to solve.</h2>
+          <p>Cross-attention maps are the go-to interpretability signal for diffusion models — but they are noisy, timestep-dependent, and rarely sharp enough to explain <em>where</em> a concept was painted.</p>
+        </div>
+      </article>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 02<br/>APPROACH</div>
+        <div>
+          <h2>How it works.</h2>
+          <p>reverseDAAM aggregates cross-attention across denoising timesteps with an importance-weighted schedule, then inverts the map to attribute image regions to prompt tokens. The Word–BBox Alignment Score lets us compare models by measuring overlap with ground-truth object boxes.</p>
+        </div>
+      </article>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 03<br/>RESULTS</div>
+        <div>
+          <h2>What it delivered.</h2>
+          <p>SDXL aligned objects to prompts <strong>22% better</strong> than Stable Diffusion 1.5 on a 400-prompt held-out set — with the gap widening for multi-object compositions.</p>
+        </div>
+      </article>
+
+      <div class="case-links">
+        <a href="https://github.com/Muhammad-Ahmad-Waseem/rdaam" target="_blank" rel="noopener">
+          <span class="lbl">Source code</span>
+          <span>GitHub →</span>
+        </a>
+        <a href="../publications.html">
+          <span class="lbl">Related papers</span>
+          <span>Publications →</span>
+        </a>
+        <a href="mailto:ahmadwaseem648@gmail.com?subject=reverseDAAM">
+          <span class="lbl">Ask me anything</span>
+          <span>Email →</span>
+        </a>
+      </div>
+
+      <div class="nav-prev-next">
+        <a href="autophon.html">
+          <span class="k">← Prev /01</span>
+          <span class="v"><em>AutoPhon</em></span>
+        </a>
+        <a href="tfnet.html">
+          <span class="k">Next /03 →</span>
+          <span class="v"><em>TFNet</em></span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="../components/layout.js"></script>
+<script>
+  SiteLayout.mount('work', 'Project · reverseDAAM');
+  document.querySelectorAll('.rail-nav a, .rail-logo, .site-footer a[href], .rail-socials a').forEach(a => {
+    const h = a.getAttribute('href') || '';
+    if (h && !h.startsWith('http') && !h.startsWith('mailto') && !h.startsWith('#') && !h.startsWith('../') && !h.startsWith('/')) {
+      a.setAttribute('href', '../' + h);
+    }
+  });
+</script>
+<script src="../components/tweaks.js"></script>
+</body>
+</html>

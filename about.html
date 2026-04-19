@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About — Muhammad Ahmad Waseem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/site.css">
+<style>
+  .about-hero {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    padding: 60px 0 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .about-hero h1 {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .about-hero h1 em { color: var(--accent); font-style: italic; }
+  .about-hero .lede { font-size: 1.15rem; color: var(--ink-2); line-height: 1.65; max-width: 58ch; }
+  .about-hero .lede + .lede { margin-top: 20px; }
+  .about-hero .lede strong { color: var(--ink); font-weight: 600; }
+
+  .portrait {
+    aspect-ratio: 3/4;
+    background: var(--paper-3) url('assets/profile.png') center/cover no-repeat;
+    filter: grayscale(0.2);
+    border: 1px solid var(--rule-2);
+  }
+
+  /* Facts grid */
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 40px;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+  }
+  .fact {
+    padding: 22px 20px;
+    border-right: 1px solid var(--rule);
+  }
+  .fact:nth-child(3n) { border-right: 0; }
+  .fact:nth-child(n+4) { border-top: 1px solid var(--rule); }
+  .fact .k {
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3);
+    margin-bottom: 8px;
+  }
+  .fact .v { font-family: var(--f-display); font-size: 1.3rem; line-height: 1.2; color: var(--ink); }
+
+  /* Skills */
+  .skill-group { margin-top: 28px; }
+  .skill-group h3 {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .skills-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 36px; }
+  .skill {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--rule);
+    gap: 12px;
+  }
+  .skill .name { font-size: 14px; color: var(--ink); }
+  .skill .bar { display: flex; gap: 3px; align-items: center; }
+  .skill .bar .dot {
+    width: 14px; height: 4px; background: var(--rule-2);
+  }
+  .skill .bar .dot.on { background: var(--ink); }
+  .skill .bar .dot.on.accent { background: var(--accent); }
+
+  /* Timeline */
+  .timeline { margin-top: 12px; }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px;
+    padding: 28px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .tl-item .when {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .tl-item .place {
+    font-family: var(--f-mono); font-size: 11px;
+    color: var(--accent); margin-top: 6px; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .tl-item h4 {
+    font-family: var(--f-display); font-weight: 400;
+    font-size: 1.5rem; line-height: 1.2; color: var(--ink);
+    margin: 0 0 10px;
+  }
+  .tl-item p, .tl-item li { color: var(--ink-2); font-size: 15px; line-height: 1.6; }
+
+  /* Interests grid */
+  .interests {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 24px;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+  }
+  .interest {
+    padding: 28px 20px;
+    border-right: 1px solid var(--rule);
+    min-height: 170px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .interest:last-child { border-right: 0; }
+  .interest .n { font-family: var(--f-mono); font-size: 10px; color: var(--ink-3); letter-spacing: 0.16em; }
+  .interest h5 { font-family: var(--f-display); font-weight: 400; font-size: 1.6rem; line-height: 1.1; margin: 0; }
+  .interest h5 em { color: var(--accent); font-style: italic; }
+  .interest p { font-size: 13px; color: var(--ink-2); margin: 0; line-height: 1.5; }
+
+  @media (max-width: 820px) {
+    .about-hero { grid-template-columns: 1fr; gap: 40px; }
+    .facts, .skills-list, .interests { grid-template-columns: 1fr 1fr; }
+    .fact:nth-child(3n) { border-right: 1px solid var(--rule); }
+    .fact:nth-child(2n) { border-right: 0; }
+    .tl-item { grid-template-columns: 1fr; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <main class="page">
+    <div class="container">
+
+      <section class="about-hero reveal in">
+        <div class="portrait"></div>
+        <div>
+          <div class="eyebrow" style="margin-bottom:20px">§ About</div>
+          <h1>I build ML systems<br/>that have to <em>actually run.</em></h1>
+          <p class="lede">
+            I'm an ML Engineer with deep expertise in <strong>automatic speech recognition</strong>,
+            <strong>CUDA kernel development</strong>, and <strong>model quantization</strong>.
+            I build end-to-end systems — from training efficient ASR models for children's speech
+            to implementing custom attention kernels on A100 GPUs.
+          </p>
+          <p class="lede">
+            My work spans research — <strong>7 publications</strong> across IEEE IGARSS, BMVC, and
+            SDSC — and production deployments serving government agencies at city scale.
+            I care about the gap between a paper result and a model that ships.
+          </p>
+        </div>
+      </section>
+
+      <!-- Facts -->
+      <div class="facts reveal">
+        <div class="fact"><div class="k">Location</div><div class="v">Buffalo, NY</div></div>
+        <div class="fact"><div class="k">Availability</div><div class="v">July 2026 · STEM OPT</div></div>
+        <div class="fact"><div class="k">Nationality</div><div class="v">Pakistani</div></div>
+        <div class="fact"><div class="k">Study</div><div class="v">M.S. CS · UB · 3.94 GPA</div></div>
+        <div class="fact"><div class="k">Role</div><div class="v">Grad. Research Assistant</div></div>
+        <div class="fact"><div class="k">Interests</div><div class="v">ASR, GPU, Quantization</div></div>
+      </div>
+
+      <!-- Timeline -->
+      <section class="reveal">
+        <div class="sect-head">
+          <div><div class="idx">§ 01 / EDUCATION</div></div>
+          <div><h2>Where I studied.</h2></div>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div>
+              <div class="when">Aug 2024 – Jul 2026</div>
+              <div class="place">UB / SUNY · Buffalo, NY</div>
+            </div>
+            <div>
+              <h4>M.S. in Computer Science</h4>
+              <p>GPA 3.945 / 4.0. Coursework in Algorithm Analysis, GPU Computing and its Applications to AI. Research focus: ASR, model quantization, GPU systems, diffusion interpretability.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div>
+              <div class="when">Sep 2020 – Mar 2023</div>
+              <div class="place">ITU · Lahore, PK</div>
+            </div>
+            <div>
+              <h4>M.S. in Electrical Engineering</h4>
+              <p>GPA 3.83 / 4.0. Thesis: Unsupervised Detection of Facial Landmarks using a GCN-based consistency-guided bottleneck (published BMVC 2023).</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div>
+              <div class="when">Oct 2016 – Jun 2020</div>
+              <div class="place">UET · Lahore, PK</div>
+            </div>
+            <div>
+              <h4>B.S. in Electrical Engineering</h4>
+              <p>GPA 3.52 / 4.0. Major courses: Intro to Machine Learning, Applied Probability &amp; Random Processes, Linear Algebra, Digital Signal Processing.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="reveal">
+        <div class="sect-head">
+          <div><div class="idx">§ 02 / SKILLS</div></div>
+          <div>
+            <h2>What I know.</h2>
+            <p class="lede">Filled dots are proficiency — five is production-ready, three is working knowledge.</p>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Speech &amp; ASR</h3>
+          <div class="skills-list" data-skills='[
+            ["Wav2Vec 2.0", 5],
+            ["Conformer / CTC", 4],
+            ["NVIDIA NeMo", 4],
+            ["Phoneme Modeling", 5],
+            ["Kaldi / HMM-ASR", 4],
+            ["Whisper", 4]
+          ]'></div>
+        </div>
+        <div class="skill-group">
+          <h3>GPU &amp; Systems</h3>
+          <div class="skills-list" data-skills='[
+            ["CUDA / nvcc", 4],
+            ["TensorRT", 4],
+            ["Triton", 4],
+            ["NVIDIA A100 / Jetson", 4],
+            ["INT8 / FP16 Inference", 4]
+          ]'></div>
+        </div>
+        <div class="skill-group">
+          <h3>Quantization &amp; Compression</h3>
+          <div class="skills-list" data-skills='[
+            ["QAT (Quantization-Aware Training)", 5],
+            ["AWQ / GPTQ", 4],
+            ["SmoothQuant / LLM.int8", 4],
+            ["Knowledge Distillation", 4]
+          ]'></div>
+        </div>
+        <div class="skill-group">
+          <h3>Frameworks &amp; Languages</h3>
+          <div class="skills-list" data-skills='[
+            ["PyTorch", 5],
+            ["HuggingFace Transformers", 5],
+            ["Python", 5],
+            ["C++ / C", 4],
+            ["TensorFlow", 3],
+            ["OpenCV", 4]
+          ]'></div>
+        </div>
+      </section>
+
+      <!-- Interests -->
+      <section class="reveal">
+        <div class="sect-head">
+          <div><div class="idx">§ 03 / INTERESTS</div></div>
+          <div>
+            <h2>Things I care about.</h2>
+            <p class="lede">Research areas I return to, and where I want to go next.</p>
+          </div>
+        </div>
+        <div class="interests">
+          <div class="interest">
+            <div class="n">01 · Core</div>
+            <h5>Speech for <em>real</em> voices</h5>
+            <p>Children, accents, code-switching. The long tail of ASR is where most of the users live.</p>
+          </div>
+          <div class="interest">
+            <div class="n">02 · Core</div>
+            <h5>Kernels on <em>the edge</em></h5>
+            <p>Fused ops, INT8, Jetson. Making transformers practical away from the datacenter.</p>
+          </div>
+          <div class="interest">
+            <div class="n">03 · Exploring</div>
+            <h5><em>Interpretable</em> diffusion</h5>
+            <p>What is the model actually attending to? Post-hoc alignment between pixels and prompts.</p>
+          </div>
+          <div class="interest">
+            <div class="n">04 · Next</div>
+            <h5>Multimodal <em>on-device</em></h5>
+            <p>Bringing audio + vision + language to hardware that fits in a pocket or a car.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script src="components/layout.js"></script>
+<script>
+  SiteLayout.mount('about', 'About / 02');
+  document.querySelectorAll('[data-skills]').forEach(el => {
+    const rows = JSON.parse(el.getAttribute('data-skills'));
+    el.innerHTML = rows.map(([n, lvl]) => {
+      const dots = Array.from({length: 5}, (_, i) =>
+        `<span class="dot ${i < lvl ? 'on' : ''} ${i === lvl - 1 ? 'accent' : ''}"></span>`
+      ).join('');
+      return `<div class="skill"><span class="name">${n}</span><span class="bar">${dots}</span></div>`;
+    }).join('');
+  });
+</script>
+<script src="components/tweaks.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cooling Efficacy — Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles/site.css">
+<link rel="stylesheet" href="../styles/project.css">
+</head>
+<body>
+<div class="shell">
+  <main class="page">
+    <div class="container">
+
+      <section class="case-hero reveal in">
+        <a class="case-back" href="../projects.html">← All projects</a>
+        <div class="case-meta">
+          <span>/07</span>
+          <span class="accent">PUBLISHED</span>
+          <span>2025</span>
+          <span>IEEE IGARSS 2025</span>
+        </div>
+        <h1>Cooling Efficacy — <em>how green spaces fight the heat.</em></h1>
+        <p class="lede">Remote-sensing pipeline quantifying how <strong>urban green spaces</strong> mitigate land surface temperature during extreme heat events. Landsat LST + Sentinel-2 NDVI, multi-city.</p>
+        <div class="hero-img"><img src="../assets/projects/cooling.png" alt=""></div>
+      </section>
+
+      <div class="metrics reveal">
+        <div class="metric"><div class="k">Cities studied</div><div class="v">5</div><div class="s">South Asia</div></div><div class="metric"><div class="k">Time span</div><div class="v">10</div><div class="s">years</div></div><div class="metric"><div class="k">Avg cooling</div><div class="v">2.4</div><div class="s">°C inside parks</div></div><div class="metric"><div class="k">Pipeline</div><div class="v">GEE</div><div class="s">End-to-end</div></div>
+      </div>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 01<br/>PROBLEM</div>
+        <div>
+          <h2>What it had to solve.</h2>
+          <p>Climate adaptation budgets are limited; city planners need to know which parks actually cool and which don't — without running ground sensors at every site.</p>
+        </div>
+      </article>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 02<br/>APPROACH</div>
+        <div>
+          <h2>How it works.</h2>
+          <p>Combines Landsat-derived LST with Sentinel-2 NDVI inside municipal boundary shapefiles, computing a per-park cooling index over 10 years. Anomaly detection surfaces heatwave episodes for event-by-event analysis.</p>
+        </div>
+      </article>
+
+      <article class="body-grid reveal">
+        <div class="side">§ 03<br/>RESULTS</div>
+        <div>
+          <h2>What it delivered.</h2>
+          <p>Parks larger than 2 hectares with >60% canopy cover provided <strong>2.4°C</strong> sustained cooling; smaller parks below 40% canopy showed no significant effect.</p>
+        </div>
+      </article>
+
+      <div class="case-links">
+        <a href="https://github.com/Muhammad-Ahmad-Waseem" target="_blank" rel="noopener">
+          <span class="lbl">Source code</span>
+          <span>GitHub →</span>
+        </a>
+        <a href="../publications.html">
+          <span class="lbl">Related papers</span>
+          <span>Publications →</span>
+        </a>
+        <a href="mailto:ahmadwaseem648@gmail.com?subject=Cooling Efficacy">
+          <span class="lbl">Ask me anything</span>
+          <span>Email →</span>
+        </a>
+      </div>
+
+      <div class="nav-prev-next">
+        <a href="lwmc.html">
+          <span class="k">← Prev /06</span>
+          <span class="v"><em>Waste Routing</em></span>
+        </a>
+        <a href="popdensity.html">
+          <span class="k">Next /08 →</span>
+          <span class="v"><em>PD-SEG</em></span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="../components/layout.js"></script>
+<script>
+  SiteLayout.mount('work', 'Project · Cooling Efficacy');
+  document.querySelectorAll('.rail-nav a, .rail-logo, .site-footer a[href], .rail-socials a').forEach(a => {
+    const h = a.getAttribute('href') || '';
+    if (h && !h.startsWith('http') && !h.startsWith('mailto') && !h.startsWith('#') && !h.startsWith('../') && !h.startsWith('/')) {
+      a.setAttribute('href', '../' + h);
+    }
+  });
+</script>
+<script src="../components/tweaks.js"></script>
+</body>
+</html>

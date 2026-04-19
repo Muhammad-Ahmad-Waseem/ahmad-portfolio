@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Experience — Muhammad Ahmad Waseem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/site.css">
+<style>
+  .cv-hero { padding: 60px 0 30px; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 1.3fr 1fr; gap: 60px; align-items: end; }
+  .cv-hero h1 { font-family: var(--f-display); font-weight: 400; font-size: clamp(3rem, 7vw, 6rem); line-height: 0.95; letter-spacing: -0.03em; }
+  .cv-hero h1 em { color: var(--accent); font-style: italic; }
+  .cv-hero .lede { color: var(--ink-2); font-size: 1.1rem; max-width: 54ch; }
+  .cv-hero .cta { margin-top: 22px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .cv-role {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 40px;
+    padding: 44px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .cv-role .aside .when { font-family: var(--f-mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.16em; text-transform: uppercase; }
+  .cv-role .aside .place { font-family: var(--f-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 6px; line-height: 1.6; }
+  .cv-role h3 {
+    font-family: var(--f-display); font-weight: 400;
+    font-size: 2rem; line-height: 1.1; letter-spacing: -0.015em;
+    margin: 0 0 6px;
+  }
+  .cv-role h3 em { color: var(--accent); font-style: italic; }
+  .cv-role .sub { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 22px; }
+  .cv-role ul { margin: 0; padding: 0; list-style: none; }
+  .cv-role li {
+    padding: 14px 0;
+    border-top: 1px dashed var(--rule);
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 16px;
+    align-items: baseline;
+  }
+  .cv-role li:first-child { border-top: 0; }
+  .cv-role li .bullet {
+    font-family: var(--f-mono); font-size: 10px; color: var(--accent); letter-spacing: 0.1em;
+  }
+  .cv-role li .body { color: var(--ink); font-size: 15px; line-height: 1.6; }
+  .cv-role li .body strong { background: linear-gradient(transparent 60%, oklch(0.88 0.08 88 / 0.7) 0); padding: 0 3px; font-weight: 600; }
+
+  .stack-row {
+    margin-top: 18px;
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .stack-row .t {
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 4px 9px; border: 1px solid var(--rule-2); color: var(--ink-2);
+  }
+
+  .cv-key-metrics {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    margin: 0; padding: 0;
+    border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule);
+  }
+  .cv-key-metrics .m {
+    padding: 22px; border-right: 1px solid var(--rule);
+  }
+  .cv-key-metrics .m:last-child { border-right: 0; }
+  .cv-key-metrics .n { font-family: var(--f-display); font-size: 2.6rem; line-height: 1; color: var(--ink); letter-spacing: -0.02em; }
+  .cv-key-metrics .n em { color: var(--accent); font-style: italic; }
+  .cv-key-metrics .l { font-family: var(--f-mono); font-size: 10px; color: var(--ink-3); letter-spacing: 0.16em; text-transform: uppercase; margin-top: 8px; line-height: 1.5; }
+
+  @media (max-width: 820px) {
+    .cv-hero { grid-template-columns: 1fr; gap: 24px; }
+    .cv-role { grid-template-columns: 1fr; gap: 16px; }
+    .cv-key-metrics { grid-template-columns: 1fr 1fr; }
+    .cv-key-metrics .m:nth-child(2n) { border-right: 0; }
+    .cv-key-metrics .m:nth-child(n+3) { border-top: 1px solid var(--rule); }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <main class="page">
+    <div class="container">
+
+      <section class="cv-hero reveal in">
+        <div>
+          <div class="eyebrow" style="margin-bottom:14px">§ 05 / Experience</div>
+          <h1>Six years,<br/>three <em>labs</em>,<br/>one thesis.</h1>
+        </div>
+        <div>
+          <p class="lede">A working CV. Every role comes with the numbers — WER drops, throughput gains, liters of fuel saved. If you want the one-pager, grab the PDF.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="assets/resume.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13M6 10l6 6 6-6M4 21h16"/></svg>
+              Download Résumé
+            </a>
+            <a class="btn" href="contact.html">Request references →</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="cv-key-metrics reveal">
+        <div class="m"><div class="n">80→<em>15</em></div><div class="l">Phoneme error rate</div></div>
+        <div class="m"><div class="n"><em>5×</em></div><div class="l">TensorRT throughput</div></div>
+        <div class="m"><div class="n"><em>94%</em></div><div class="l">F1 on SpaceNet2</div></div>
+        <div class="m"><div class="n">~100K<em>L</em></div><div class="l">Monthly fuel savings</div></div>
+      </section>
+
+      <!-- Role 1 -->
+      <article class="cv-role reveal">
+        <div class="aside">
+          <div class="when">Aug 2024 – Jul 2026</div>
+          <div class="place">University at Buffalo<br/>Buffalo, NY</div>
+        </div>
+        <div>
+          <h3>Graduate Research Assistant · <em>ASR, GPU Systems, Quantization</em></h3>
+          <div class="sub">UB · SUNY</div>
+          <ul>
+            <li><span class="bullet">01</span><div class="body">Reduced Phoneme Error Rate from <strong>80% to 15%</strong> on children's speech via Wav2Vec 2.0 fine-tuning and the AutoPhon auto-annotation pipeline (CSLU Kids, MyST, PhonBank).</div></li>
+            <li><span class="bullet">02</span><div class="body">Developed <strong>outlier-aware QAT</strong> for Conformer ASR: 7.17 WER vs 93.7 naive INT8 — enabling standard INT8 deployment without custom kernels.</div></li>
+            <li><span class="bullet">03</span><div class="body">Implemented <strong>CUDA kernels</strong> for scaled dot-product attention and FFN on A100; profiled compute- vs memory-bound regimes against cuBLAS and PyTorch.</div></li>
+            <li><span class="bullet">04</span><div class="body">Benchmarked <strong>AWQ, GPTQ, SmoothQuant</strong> across A100, Jetson, Raspberry Pi; derived device-specific quantization strategies.</div></li>
+            <li><span class="bullet">05</span><div class="body">Proposed <strong>reverseDAAM</strong> — post-hoc diffusion model interpretability framework; under review at IEEE SMC 2026.</div></li>
+          </ul>
+          <div class="stack-row">
+            <span class="t">PyTorch</span><span class="t">Wav2Vec 2.0</span><span class="t">CUDA</span><span class="t">TensorRT</span><span class="t">A100</span><span class="t">NeMo</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Role 2 -->
+      <article class="cv-role reveal">
+        <div class="aside">
+          <div class="when">Aug 2021 – Jul 2024</div>
+          <div class="place">CITY at LUMS<br/>Lahore, Pakistan</div>
+        </div>
+        <div>
+          <h3>ML Engineer · <em>Computer Vision, GIS, Production</em></h3>
+          <div class="sub">LUMS · CITY Lab</div>
+          <ul>
+            <li><span class="bullet">01</span><div class="body"><strong>TensorRT optimization</strong> on NVIDIA AGX Xavier: 5× throughput (3→14 FPS); deployed city-wide with Punjab Safe Cities Authority.</div></li>
+            <li><span class="bullet">02</span><div class="body">Designed <strong>TFNet segmentation</strong> (Dilated ResNet + dual decoders): 94% F1 on SpaceNet2 and WHU; published IEEE IGARSS 2025.</div></li>
+            <li><span class="bullet">03</span><div class="body">Built <strong>city-scale waste routing</strong> (Clarke-Wright, PostGIS, FastAPI, Vue.js): ~100K liters/month fuel savings, production across Lahore.</div></li>
+            <li><span class="bullet">04</span><div class="body"><strong>Multi-sensor flood mapping</strong> on Google Earth Engine (Sentinel-1/2, Landsat-9): identified 1,410 km of road damage during 2022 Pakistan floods.</div></li>
+            <li><span class="bullet">05</span><div class="body"><strong>Population disaggregation</strong> pipeline at 30m resolution — outperforming WorldPop and Meta baselines.</div></li>
+          </ul>
+          <div class="stack-row">
+            <span class="t">TensorRT</span><span class="t">Jetson</span><span class="t">PostGIS</span><span class="t">FastAPI</span><span class="t">GEE</span><span class="t">Vue</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Role 3 -->
+      <article class="cv-role reveal">
+        <div class="aside">
+          <div class="when">Sep 2020 – Jul 2021</div>
+          <div class="place">Information Tech. University<br/>Lahore, Pakistan</div>
+        </div>
+        <div>
+          <h3>Graduate Research Assistant · <em>Computer Vision, 3D</em></h3>
+          <div class="sub">ITU · Vision Lab</div>
+          <ul>
+            <li><span class="bullet">01</span><div class="body">Developed a <strong>consistency-guided bottleneck</strong> for unsupervised facial landmark detection via GCN clustering; published BMVC 2023.</div></li>
+            <li><span class="bullet">02</span><div class="body">Implemented <strong>DSAC*</strong> (Differentiable RANSAC) for 6-DoF camera pose estimation; COLMAP-based ground truth generation.</div></li>
+            <li><span class="bullet">03</span><div class="body">Designed an <strong>FPGA hardware accelerator</strong> for LeNet on NEXYS4: custom compute engines for conv and dense layers.</div></li>
+          </ul>
+          <div class="stack-row">
+            <span class="t">PyTorch</span><span class="t">OpenCV</span><span class="t">DSAC*</span><span class="t">Verilog</span><span class="t">COLMAP</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+</div>
+
+<script src="components/layout.js"></script>
+<script>SiteLayout.mount('cv', 'Experience / 05');</script>
+<script src="components/tweaks.js"></script>
+</body>
+</html>
